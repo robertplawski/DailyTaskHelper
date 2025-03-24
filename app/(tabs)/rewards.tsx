@@ -5,6 +5,7 @@ import { useCallback, useContext, useState } from "react";
 import UserContext from "@/contexts/UserContext";
 import { useRouter } from "expo-router";
 import { Platform } from "react-native";
+import ThemedView from "@/components/ThemedView";
 function isMobile() {
   return Platform.OS === "ios" || Platform.OS === "android";
 }
@@ -12,14 +13,14 @@ export default function Rewards() {
   const { t } = useTranslation();
 
   return (
-    <View
+    <ThemedView
       style={{
         flex: 1,
         padding: 16,
         alignItems: isMobile() ? "stretch" : "center",
       }}
     >
-      <View
+      <ThemedView
         style={{
           maxWidth: 512,
           display: "flex",
@@ -29,7 +30,7 @@ export default function Rewards() {
       >
         <Text h1>{t`rewards.title`}</Text>
         <Text h4>{t`rewards.subtitle`}</Text>
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }

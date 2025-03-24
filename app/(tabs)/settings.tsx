@@ -5,6 +5,7 @@ import { useCallback, useContext, useState } from "react";
 import UserContext from "@/contexts/UserContext";
 import { useRouter } from "expo-router";
 import { Platform } from "react-native";
+import ThemedView from "@/components/ThemedView";
 function isMobile() {
   return Platform.OS === "ios" || Platform.OS === "android";
 }
@@ -15,14 +16,14 @@ export default function Settings() {
   const router = useRouter();
 
   return (
-    <View
+    <ThemedView
       style={{
         flex: 1,
         padding: 16,
         alignItems: isMobile() ? "stretch" : "center",
       }}
     >
-      <View
+      <ThemedView
         style={{
           maxWidth: 512,
           display: "flex",
@@ -33,13 +34,12 @@ export default function Settings() {
         <Text h1>{t`manage.title`}</Text>
         <Text h4>{t`manage.subtitle`}</Text>
 
-        <Text>Please enter your name below</Text>
+        <Text style={{ margin: 14, marginBottom: 0 }}>{t`fields.name`}</Text>
         <Input
           onChangeText={(text) => setName(text)}
           placeholder={name || t`placeholder.name`}
         />
-        <Button>{t`manage.done`}</Button>
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }

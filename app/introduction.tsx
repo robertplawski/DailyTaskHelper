@@ -1,10 +1,13 @@
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import { Button, Input, Text } from "@rneui/themed";
 import { useTranslation } from "react-i18next";
 import { useCallback, useContext, useState } from "react";
 import UserContext from "@/contexts/UserContext";
 import { useRouter } from "expo-router";
-
+import ThemedView from "@/components/ThemedView";
+function isMobile() {
+  return Platform.OS === "ios" || Platform.OS === "android";
+}
 export default function Introduction() {
   const { t } = useTranslation();
   const { setName } = useContext(UserContext);
@@ -16,14 +19,14 @@ export default function Introduction() {
   }, []);
 
   return (
-    <View
+    <ThemedView
       style={{
         flex: 1,
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: isMobile() ? "stretch" : "center",
       }}
     >
-      <View
+      <ThemedView
         style={{
           maxWidth: 512,
           display: "flex",
@@ -37,7 +40,7 @@ export default function Introduction() {
           style={{ textAlign: "center" }}
         >{t`introduction.subtitle`}</Text>
 
-        <Text>{t`fields.name`}</Text>
+        <Text style={{ margin: 14, marginBottom: 0 }}>{t`fields.name`}</Text>
         <Input
           onChangeText={(text) => setName(text)}
           placeholder={t`placeholder.name`}
@@ -45,7 +48,7 @@ export default function Introduction() {
         <Button
           onPress={() => introductionDone()}
         >{t`introduction.done`}</Button>
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }

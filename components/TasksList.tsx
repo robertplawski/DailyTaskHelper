@@ -32,7 +32,7 @@ export function TaskItem({
   const [toTime, setToTime] = useState(_toTime);
 
   return (
-    <ListItem style={{ marginBottom: 8 }}>
+    <ListItem style={{ margin: 8, marginBottom: 0 }}>
       <Icon name={iconName} type="material-community" color="grey" />
       <ListItem.Content>
         <ListItem.Title>{title}</ListItem.Title>
@@ -54,7 +54,7 @@ export default function TasksList() {
     <ScrollView>
       <TaskItem />
 
-      <TaskItem expired={true} />
+      <TaskItem _expired={true} />
     </ScrollView>
   );
 }

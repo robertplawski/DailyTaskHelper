@@ -9,7 +9,7 @@
     "done": "All ready!"
   },
   "fields": {
-    "name": "Enter your name below"
+    "name": "Enter your name below: "
   },
   "manage": {
     "title": "Settings",
