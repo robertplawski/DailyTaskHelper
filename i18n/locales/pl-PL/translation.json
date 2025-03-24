@@ -1,12 +1,20 @@
 {
   "language": "Język",
+  "placeholder": {
+    "name": "Jan Kowalski"
+  },
+  "introduction": {
+    "welcome": "👋 Hej!",
+    "subtitle": "Czas na pierwszą konfigurację. ",
+    "done": "Wszystko gotowe!"
+  },
   "home": {
     "title": "Strona główna",
     "welcome": "Witaj",
     "subtitles": {
-      "morning": "Czas dobrze rozpocząć dzień",
-      "afternoon": "Połowa za tobą!",
-      "evening": "Już wieczór, czas odpocząć..."
+      "morning": "🌇 Czas dobrze rozpocząć dzień",
+      "afternoon": "🌆 Połowa za tobą!",
+      "evening": "🌃 Już wieczór, czas odpocząć..."
     }
   }
 }

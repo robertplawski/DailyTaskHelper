@@ -1,4 +1,5 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { Input, Text } from "@rneui/themed";
 import { useTranslation } from "react-i18next";
 import { getTimeOfDay } from "@/utils/getTimeOfDay";
 import UserContext from "@/contexts/UserContext";
@@ -16,10 +17,12 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>
+      <Text h1>
         {t`home.welcome`} {user.name}!
       </Text>
-      <Text>{t("home.subtitles." + getTimeOfDay())}</Text>
+      <Text h4 style={{ textAlign: "center" }}>
+        {t("home.subtitles." + getTimeOfDay())}
+      </Text>
     </View>
   );
 }
