@@ -1,0 +1,12 @@
+{
+  "language": "Language",
+  "home": {
+    "title": "Home",
+    "welcome": "Welcome",
+    "subtitles": {
+      "morning": "Let's get started with your day!",
+      "afternoon": "We're halfway there!",
+      "evening": "Whew! That was a long day..."
+    }
+  }
+}

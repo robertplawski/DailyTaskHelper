@@ -1,0 +1,12 @@
+{
+  "language": "Język",
+  "home": {
+    "title": "Strona główna",
+    "welcome": "Witaj",
+    "subtitles": {
+      "morning": "Czas dobrze rozpocząć dzień",
+      "afternoon": "Połowa za tobą!",
+      "evening": "Już wieczór, czas odpocząć..."
+    }
+  }
+}
