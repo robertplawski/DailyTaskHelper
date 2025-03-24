@@ -1,9 +1,20 @@
 import { View } from "react-native";
 import { Button, Input, Text } from "@rneui/themed";
 import { useTranslation } from "react-i18next";
+import { useCallback, useContext, useState } from "react";
+import UserContext from "@/contexts/UserContext";
+import { useRouter } from "expo-router";
 
 export default function Introduction() {
   const { t } = useTranslation();
+  const { setName } = useContext(UserContext);
+
+  const router = useRouter();
+
+  const introductionDone = useCallback(() => {
+    router.navigate("/");
+  }, []);
+
   return (
     <View
       style={{
@@ -27,8 +38,13 @@ export default function Introduction() {
         >{t`introduction.subtitle`}</Text>
 
         <Text>Please enter your name below</Text>
-        <Input placeholder={t`placeholder.name`} />
-        <Button>{t`introduction.done`}</Button>
+        <Input
+          onChangeText={(text) => setName(text)}
+          placeholder={t`placeholder.name`}
+        />
+        <Button
+          onPress={() => introductionDone()}
+        >{t`introduction.done`}</Button>
       </View>
     </View>
   );
