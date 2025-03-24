@@ -16,6 +16,10 @@
     "subtitle": "Skonfiguruj aplikację",
     "done": "Zapisz ustawienia"
   },
+  "rewards": {
+    "title": "Nagrody",
+    "subtitle": "Tutaj odbierzesz swoje nagrody!"
+  },
   "home": {
     "title": "Strona główna",
     "welcome": "Witaj",

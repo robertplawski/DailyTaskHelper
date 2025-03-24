@@ -1,10 +1,13 @@
-import { View } from "react-native";
-import { Input, Text } from "@rneui/themed";
+import { Platform, View } from "react-native";
+import { Divider, Input, LinearProgress, Text } from "@rneui/themed";
 import { useTranslation } from "react-i18next";
 import { getTimeOfDay } from "@/utils/getTimeOfDay";
 import UserContext from "@/contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
-
+import TasksList from "@/components/TasksList";
+function isMobile() {
+  return Platform.OS === "ios" || Platform.OS === "android";
+}
 export default function Index() {
   const { t } = useTranslation();
 
@@ -13,10 +16,9 @@ export default function Index() {
   return (
     <View
       style={{
-        flex: 1,
         padding: 16,
-
-        alignItems: "center",
+        flex: 1,
+        alignItems: isMobile() ? "stretch" : "center",
       }}
     >
       <View
@@ -31,6 +33,13 @@ export default function Index() {
           {t`home.welcome`} {user.name}!
         </Text>
         <Text h4>{t("home.subtitles." + getTimeOfDay())}</Text>
+        <Text>
+          Today's tasks are 25% completed, tomorrow you will be rewarded with 25
+          points + 25 completion bonus!
+        </Text>
+        <LinearProgress variant="determinate" value={25} color="#017aff" />
+        <Text>Point balance 10, next reward in 5</Text>
+        <TasksList />
       </View>
     </View>
   );

@@ -16,6 +16,10 @@
     "subtitle": "Configure app the way you want!",
     "done": "Save settings"
   },
+  "rewards": {
+    "title": "Rewards",
+    "subtitle": "Claim your prize here"
+  },
   "home": {
     "title": "Home",
     "welcome": "Welcome",
