@@ -8,6 +8,14 @@
     "subtitle": "Let's get you started with the app.",
     "done": "All ready!"
   },
+  "fields": {
+    "name": "Enter your name below"
+  },
+  "manage": {
+    "title": "Settings",
+    "subtitle": "Configure app the way you want!",
+    "done": "Save settings"
+  },
   "home": {
     "title": "Home",
     "welcome": "Welcome",

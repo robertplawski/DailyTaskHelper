@@ -14,6 +14,8 @@ export default function Index() {
     <View
       style={{
         flex: 1,
+        padding: 16,
+
         alignItems: "center",
       }}
     >
@@ -28,9 +30,7 @@ export default function Index() {
         <Text h1>
           {t`home.welcome`} {user.name}!
         </Text>
-        <Text h4 style={{ textAlign: "center" }}>
-          {t("home.subtitles." + getTimeOfDay())}
-        </Text>
+        <Text h4>{t("home.subtitles." + getTimeOfDay())}</Text>
       </View>
     </View>
   );

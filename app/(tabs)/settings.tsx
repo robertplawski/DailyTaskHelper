@@ -4,23 +4,22 @@ import { useTranslation } from "react-i18next";
 import { useCallback, useContext, useState } from "react";
 import UserContext from "@/contexts/UserContext";
 import { useRouter } from "expo-router";
-
-export default function Introduction() {
+import { Platform } from "react-native";
+function isMobile() {
+  return Platform.OS === "ios" || Platform.OS === "android";
+}
+export default function Settings() {
   const { t } = useTranslation();
-  const { setName } = useContext(UserContext);
+  const { setName, name } = useContext(UserContext);
 
   const router = useRouter();
-
-  const introductionDone = useCallback(() => {
-    router.navigate("/");
-  }, []);
 
   return (
     <View
       style={{
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        padding: 16,
+        alignItems: isMobile() ? "stretch" : "center",
       }}
     >
       <View
@@ -31,20 +30,15 @@ export default function Introduction() {
           flexDirection: "column",
         }}
       >
-        <Text h1>{t`introduction.welcome`}</Text>
-        <Text
-          h4
-          style={{ textAlign: "center" }}
-        >{t`introduction.subtitle`}</Text>
+        <Text h1>{t`manage.title`}</Text>
+        <Text h4>{t`manage.subtitle`}</Text>
 
-        <Text>{t`fields.name`}</Text>
+        <Text>Please enter your name below</Text>
         <Input
           onChangeText={(text) => setName(text)}
-          placeholder={t`placeholder.name`}
+          placeholder={name || t`placeholder.name`}
         />
-        <Button
-          onPress={() => introductionDone()}
-        >{t`introduction.done`}</Button>
+        <Button>{t`manage.done`}</Button>
       </View>
     </View>
   );

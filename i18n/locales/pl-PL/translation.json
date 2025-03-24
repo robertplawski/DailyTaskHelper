@@ -8,6 +8,14 @@
     "subtitle": "Czas na pierwszą konfigurację. ",
     "done": "Wszystko gotowe!"
   },
+  "fields": {
+    "name": "Wprowadź swoje imię poniżej"
+  },
+  "manage": {
+    "title": "Ustawienia",
+    "subtitle": "Skonfiguruj aplikację",
+    "done": "Zapisz ustawienia"
+  },
   "home": {
     "title": "Strona główna",
     "welcome": "Witaj",
