@@ -42,7 +42,7 @@ export default function Index() {
         <LinearProgress variant="determinate" value={25} color="#017aff" />
         <Text>Point balance 10, next reward in 5</Text>
         <TasksList />
-        <Dialog overlayStyle={{ gap: 8 }}>
+        {/*<Dialog overlayStyle={{ gap: 8 }}>
           <Text h3 style={{ textAlign: "center" }}>
             Points delivery!
           </Text>
@@ -52,7 +52,7 @@ export default function Index() {
           <Text style={{ textAlign: "center" }}>
             You have only 20 points left to reward yourself with "McDonald's"
           </Text>
-        </Dialog>
+        </Dialog>*/}
       </ThemedView>
     </ThemedView>
   );

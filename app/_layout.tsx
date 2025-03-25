@@ -33,6 +33,7 @@ const theme = createTheme({
 });
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import TasksListContextProvider from "@/contexts/providers/TasksListContextProvider";
 export default function RootLayout() {
   theme.mode = useColorScheme() as any;
   let [fontsLoaded] = useFonts({
@@ -50,13 +51,15 @@ export default function RootLayout() {
     <>
       <ThemeProvider theme={theme}>
         <SafeAreaView style={{ flex: 1, backgroundColor: "#017aff" }}>
-          <UserContextProvider>
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            </Stack>
+          <TasksListContextProvider>
+            <UserContextProvider>
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              </Stack>
 
-            <StatusBar style="auto" />
-          </UserContextProvider>
+              <StatusBar style="auto" />
+            </UserContextProvider>
+          </TasksListContextProvider>
         </SafeAreaView>
       </ThemeProvider>
     </>

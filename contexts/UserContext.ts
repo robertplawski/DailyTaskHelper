@@ -1,4 +1,3 @@
-import { CallbackWithResult } from "@react-native-async-storage/async-storage/lib/typescript/types";
 import { createContext } from "react";
 
 export interface UserInterface {
