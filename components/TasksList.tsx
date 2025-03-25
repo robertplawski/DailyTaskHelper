@@ -2,7 +2,7 @@ import TasksListContext from "@/contexts/TasksListContext";
 import { useTask } from "@/hooks/useTask";
 import { TaskType } from "@/types/TaskType";
 import { Button, CheckBox, Icon, ListItem } from "@rneui/themed";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useMemo, useState } from "react";
 import { ScrollView } from "react-native";
 
 export interface TaskItemProps {
@@ -22,8 +22,12 @@ export function TaskItem({ task }: TaskItemProps) {
     setCompleted,
   } = useTask(task);
 
+  const isInactive = useMemo(() => expired || completed, [expired, completed]);
+
   return (
-    <ListItem style={{ margin: 8, marginBottom: 0 }}>
+    <ListItem
+      style={{ margin: 8, marginBottom: 0, opacity: isInactive ? 0.5 : 1 }}
+    >
       <Icon type={iconType} name={iconName} color="grey" />
       <ListItem.Content>
         <ListItem.Title>{title}</ListItem.Title>
@@ -33,7 +37,7 @@ export function TaskItem({ task }: TaskItemProps) {
         </ListItem.Subtitle>
       </ListItem.Content>
       <ListItem.CheckBox
-        onPress={() => setCompleted(!completed)}
+        onPress={() => setCompleted(true)}
         checked={completed}
       />
     </ListItem>

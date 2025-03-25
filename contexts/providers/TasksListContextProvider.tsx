@@ -1,5 +1,5 @@
 import { TaskType } from "@/types/TaskType";
-import { ReactNode, useCallback, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import TasksListContext from "../TasksListContext";
 import useJSONStorage from "@/hooks/useJSONStorage";
 import { Slot } from "expo-router";
@@ -9,6 +9,8 @@ export default function TasksListContextProvider({
 }: {
   children: ReactNode;
 }) {
+  const [points, setPoints] = useState(0);
+  const [maxPoints, setMaxPoints] = useState(0);
   const {
     value: tasks,
     loading,
@@ -76,6 +78,28 @@ export default function TasksListContextProvider({
     },
   ]);
 
+  useEffect(() => {
+    if (!tasks) {
+      return;
+    }
+    const sum: number = tasks.reduce(
+      (accumulator: number, task: TaskType) => accumulator + task.weight,
+      0
+    );
+    setMaxPoints(sum);
+  }, [tasks, setMaxPoints]);
+
+  useEffect(() => {
+    if (!tasks) {
+      return;
+    }
+    const sum: number = tasks.reduce(
+      (accumulator: number, task: TaskType) =>
+        accumulator + (task.completed ? 1 : 0) * task.weight,
+      0
+    );
+    setPoints(sum);
+  }, [tasks, setPoints]);
   const updateTask = useCallback(
     (index: number, key: string, value: any) => {
       const result: any[] = [...tasks];
@@ -92,7 +116,7 @@ export default function TasksListContextProvider({
   }
 
   return (
-    <TasksListContext.Provider value={{ tasks, updateTask }}>
+    <TasksListContext.Provider value={{ maxPoints, points, tasks, updateTask }}>
       {children}{" "}
     </TasksListContext.Provider>
   );

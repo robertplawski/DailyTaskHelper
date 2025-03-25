@@ -2,7 +2,8 @@ import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 
-export const useStorage = (key: string) => {
+export const useStorage = (key: string, required: boolean = true) => {
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [value, setValueState] = useState<string | null>(null);
   const { getItem: getValueStorage, setItem: setValueStorage } =
@@ -12,6 +13,9 @@ export const useStorage = (key: string) => {
   useEffect(() => {
     const loadValue = async () => {
       const storedValue = await getValueStorage();
+      if (!storedValue && required) {
+        router.replace("/introduction");
+      }
       setValueState(storedValue);
       setLoading(false);
     };

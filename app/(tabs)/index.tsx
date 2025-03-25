@@ -6,6 +6,7 @@ import UserContext from "@/contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import TasksList from "@/components/TasksList";
 import ThemedView from "@/components/ThemedView";
+import CompletedTasksMeter from "@/components/CompletedTasksMeter";
 function isMobile() {
   return Platform.OS === "ios" || Platform.OS === "android";
 }
@@ -34,12 +35,7 @@ export default function Index() {
           {t`home.welcome`} {user.name}!
         </Text>
         <Text h4>{t("home.subtitles." + getTimeOfDay())}</Text>
-        <Text>
-          {/* Add i18n */}
-          Today's taskslist is 25% completed, so tomorrow you will be rewarded
-          with 25 points + 25 completion bonus!
-        </Text>
-        <LinearProgress variant="determinate" value={25} color="#017aff" />
+        <CompletedTasksMeter />
         <Text>Point balance 10, next reward in 5</Text>
         <TasksList />
         {/*<Dialog overlayStyle={{ gap: 8 }}>
