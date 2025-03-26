@@ -1,5 +1,5 @@
 import { TaskType } from "@/types/TaskType";
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import TasksListContext from "../TasksListContext";
 import useJSONStorage from "@/hooks/useJSONStorage";
 import { Slot } from "expo-router";
@@ -11,6 +11,7 @@ export default function TasksListContextProvider({
 }) {
   const [points, setPoints] = useState(0);
   const [maxPoints, setMaxPoints] = useState(0);
+  const [isInEditMode, setIsInEditMode] = useState(false);
   const {
     value: tasks,
     loading,
@@ -111,12 +112,47 @@ export default function TasksListContextProvider({
     [setTasks, tasks]
   );
 
+  const completedTasks = useMemo(
+    () => tasks?.filter((task: TaskType) => task.completed),
+    [tasks]
+  );
+
+  const completionPercentage = useMemo(
+    () => Math.round((completedTasks?.length / tasks?.length) * 100),
+    [completedTasks, tasks]
+  );
+
+  const completionBonus = useMemo(
+    () => Math.round((points / maxPoints) * tasks?.length),
+    [points, maxPoints, tasks]
+  );
+
+  const pointsUntilNextReward = useMemo(() => 0, []);
+
+  const toggleEditMode = useCallback(() => {
+    setIsInEditMode((val) => !val);
+  }, [setIsInEditMode]);
+
+  // JA PIDIDI UWAŻAJ
   if (loading) {
     return <Slot />;
   }
 
   return (
-    <TasksListContext.Provider value={{ maxPoints, points, tasks, updateTask }}>
+    <TasksListContext.Provider
+      value={{
+        maxPoints,
+        points,
+        tasks,
+        updateTask,
+        completedTasks,
+        completionPercentage,
+        completionBonus,
+        pointsUntilNextReward,
+        isInEditMode,
+        toggleEditMode,
+      }}
+    >
       {children}{" "}
     </TasksListContext.Provider>
   );

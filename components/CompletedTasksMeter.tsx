@@ -1,19 +1,24 @@
 import TasksListContext from "@/contexts/TasksListContext";
 import { LinearProgress, Text } from "@rneui/themed";
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 export default function CompletedTasksMeter() {
-  const { points, maxPoints, tasks } = useContext(TasksListContext);
+  const { points, completionPercentage, completionBonus } =
+    useContext(TasksListContext);
+  const { t } = useTranslation();
+
   return (
     <>
       <Text>
-        {/* Add i18n */}
-        Today's taskslist is {Math.round((points / maxPoints) * 100)}%
-        completed, so tomorrow you will be rewarded with {points} points +{" "}
-        {Math.round((points / maxPoints) * tasks.length)} completion bonus!
+        {t("tasks-meter.status", {
+          completionPercentage,
+          points,
+          completionBonus,
+        })}{" "}
       </Text>
       <LinearProgress
         variant="determinate"
-        value={Math.round((points / maxPoints) * 100)}
+        value={completionPercentage}
         color="#017aff"
       />
     </>

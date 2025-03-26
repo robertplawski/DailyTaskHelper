@@ -28,5 +28,13 @@
       "afternoon": "🌆 We're halfway there!",
       "evening": "🌃 Whew! That was a long day..."
     }
+  },
+  "tasks-meter": {
+    "status": "Today's tasklist is {{completionPercentage}}% completed, so tomorrow you will be rewarded with {{points}} points + {{completionBonus}} completion bonus!"
+  },
+  "point-balance": "Your points balance is {{points}}, next reward in {{pointsUntilNextReward}}",
+  "edit-mode": {
+    "enable-button": "Enter edit mode",
+    "disable-button": "Leave edit mode"
   }
 }
